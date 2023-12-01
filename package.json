@@ -1,6 +1,6 @@
 {
   "name": "create-merged-coverage-reports",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Create merged coverage reports",
   "license": "MIT",
   "private": false,
