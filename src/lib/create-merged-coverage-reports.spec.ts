@@ -46,7 +46,7 @@ describe('createMergedCoverageReports', () => {
         coverageFileGlob: 'foo/**/bar.json',
       })
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      '"No coverage reports found with the foo/**/bar.json glob"'
+      `[Error: No coverage reports found with the foo/**/bar.json glob]`
     );
   });
 
