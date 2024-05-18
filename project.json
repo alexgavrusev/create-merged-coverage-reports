@@ -3,6 +3,7 @@
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/rollup:rollup",
@@ -41,9 +42,8 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["./src/**/*.ts", "./package.json"]
+        "lintFilePatterns": ["src", "{projectRoot}/package.json"]
       }
     },
     "test": {
@@ -61,17 +61,50 @@
         "preset": {
           "name": "conventionalcommits",
           "types": [
-            { "type": "feat", "section": "Features" },
-            { "type": "fix", "section": "Bug Fixes" },
-            { "type": "perf", "section": "Performance Improvements" },
-            { "type": "revert", "section": "Reverts" },
-            { "type": "docs", "section": "Documentation" },
-            { "type": "style", "section": "Styles" },
-            { "type": "chore", "section": "Miscellaneous Chores" },
-            { "type": "refactor", "section": "Code Refactoring" },
-            { "type": "test", "section": "Tests" },
-            { "type": "build", "section": "Build System" },
-            { "type": "ci", "section": "Continuous Integration" }
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "perf",
+              "section": "Performance Improvements"
+            },
+            {
+              "type": "revert",
+              "section": "Reverts"
+            },
+            {
+              "type": "docs",
+              "section": "Documentation"
+            },
+            {
+              "type": "style",
+              "section": "Styles"
+            },
+            {
+              "type": "chore",
+              "section": "Miscellaneous Chores"
+            },
+            {
+              "type": "refactor",
+              "section": "Code Refactoring"
+            },
+            {
+              "type": "test",
+              "section": "Tests"
+            },
+            {
+              "type": "build",
+              "section": "Build System"
+            },
+            {
+              "type": "ci",
+              "section": "Continuous Integration"
+            }
           ]
         },
         "commitMessageFormat": "chore: release version {version} [skip ci]"
@@ -92,6 +125,5 @@
       },
       "defaultConfiguration": "local"
     }
-  },
-  "tags": []
+  }
 }
