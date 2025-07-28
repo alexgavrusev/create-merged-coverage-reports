@@ -1,9 +1,9 @@
-import * as path from 'path';
-import { createCoverageMap } from 'istanbul-lib-coverage';
-import { createContext } from 'istanbul-lib-report';
-import { create as createReport, ReportOptions } from 'istanbul-reports';
-import { readJson } from 'fs-extra';
-import { dynamicImport } from 'tsimportlib';
+import * as path from "path";
+import { readFile } from "fs/promises";
+import { default as libCoverage } from "istanbul-lib-coverage";
+import { default as libReport } from "istanbul-lib-report";
+import { create as createReport, type ReportOptions } from "istanbul-reports";
+import { glob } from "tinyglobby";
 
 type CreateMergedCoverageReportsOptions = {
   /**
@@ -32,16 +32,13 @@ type CreateMergedCoverageReportsOptions = {
   reporters?: string[];
 };
 
-const getGlobby = () =>
-  dynamicImport(require.resolve('globby'), module) as Promise<
-    typeof import('globby')
-  >;
+const readJson = async (p: string) => JSON.parse(await readFile(p, "utf-8"));
 
 const normalizeOptions = (options: CreateMergedCoverageReportsOptions) => {
   const {
-    coverageFileGlob = 'coverage/**/coverage-final.json',
-    outputDirectory = path.join('coverage', 'merged'),
-    reporters = ['json'],
+    coverageFileGlob = "coverage/**/coverage-final.json",
+    outputDirectory = path.join("coverage", "merged"),
+    reporters = ["json"],
   } = options;
 
   return {
@@ -52,51 +49,49 @@ const normalizeOptions = (options: CreateMergedCoverageReportsOptions) => {
 };
 
 export const createMergedCoverageReports = async (
-  options: CreateMergedCoverageReportsOptions = {}
-) => {
+  options: CreateMergedCoverageReportsOptions = {},
+): Promise<void> => {
   const { coverageFileGlob, outputDirectory, reporters } =
     normalizeOptions(options);
 
-  const { globby } = await getGlobby();
-
-  const jsonFilePaths = await globby([
+  const jsonFilePaths = await glob([
     coverageFileGlob,
     `!${outputDirectory}/**/*`,
   ]);
 
   if (jsonFilePaths.length === 0) {
     throw new Error(
-      `No coverage reports found with the ${coverageFileGlob} glob`
+      `No coverage reports found with the ${coverageFileGlob} glob`,
     );
   }
 
-  const mergedMap = createCoverageMap();
+  const mergedMap = libCoverage.createCoverageMap();
 
   for (const jsonFilePath of jsonFilePaths) {
     const coverageJson = await readJson(
       // ensure absolute path, otherwise ENOENT error happens
-      path.resolve(jsonFilePath)
+      path.resolve(jsonFilePath),
     );
 
     mergedMap.merge(coverageJson);
   }
 
-  const reportGenerationContext = createContext({
+  const reportGenerationContext = libReport.createContext({
     dir: outputDirectory,
-    defaultSummarizer: 'nested',
+    defaultSummarizer: "nested",
     coverageMap: mergedMap,
   });
 
   reporters.forEach((reporter) => {
     const report = createReport(
       // HACK: may be a custom reporter
-      reporter as unknown as keyof ReportOptions
+      reporter as unknown as keyof ReportOptions,
     );
 
     report.execute(reportGenerationContext);
   });
 
   console.log(
-    `Generated ${reporters.join(', ')} reports to ${outputDirectory}`
+    `Generated ${reporters.join(", ")} reports to ${outputDirectory}`,
   );
 };

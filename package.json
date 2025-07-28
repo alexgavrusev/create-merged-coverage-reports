@@ -7,64 +7,59 @@
   "author": "Alex Gavrusev <alex@gavrusev.dev>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexgavrusev/create-merged-coverage-reports.git"
+    "url": "git+https://github.com/alexgavrusev/create-merged-coverage-reports.git"
   },
   "homepage": "https://github.com/alexgavrusev/create-merged-coverage-reports#readme",
   "bugs": {
     "url": "https://github.com/alexgavrusev/create-merged-coverage-reports/issues"
   },
-  "bin": "./bin.cjs.js",
+  "type": "module",
+  "bin": "./dist/bin.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./bin": "./dist/bin.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "prepare": "node -e \"if(require('fs').existsSync('.git')){/* proceed only if .git is found */ process.exit(1)}\" || is-ci || husky install"
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "lint": "oxlint --deny-warnings",
+    "lint:fix": "pnpm run lint --fix",
+    "format": "prettier --cache --write .",
+    "release": "bumpp && pnpm publish",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.2",
-    "commander": "^12.1.0",
-    "fs-extra": "^11.2.0",
-    "globby": "^14.0.0",
+    "commander": "^14.0.0",
     "istanbul-lib-coverage": "^3.2.2",
     "istanbul-lib-report": "^3.0.1",
     "istanbul-reports": "^3.1.6",
     "read-package-up": "^11.0.0",
-    "tsimportlib": "^0.0.5"
+    "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@gvrs-nx/ts-package": "0.3.0",
-    "@jscutlery/semver": "^5.2.2",
-    "@nx/eslint": "18.3.5",
-    "@nx/eslint-plugin": "18.3.5",
-    "@nx/js": "18.3.5",
-    "@nx/rollup": "18.3.5",
-    "@nx/vite": "18.3.5",
-    "@nx/workspace": "18.3.5",
-    "@swc-node/register": "~1.9.1",
-    "@swc/cli": "~0.3.12",
-    "@swc/core": "~1.5.7",
-    "@types/fs-extra": "^11.0.4",
     "@types/istanbul-lib-coverage": "^2.0.6",
     "@types/istanbul-lib-report": "^3.0.3",
     "@types/istanbul-reports": "^3.0.4",
-    "@types/node": "20.12.12",
+    "@types/node": "^24.1.0",
     "@types/tmp": "^0.2.6",
-    "@typescript-eslint/eslint-plugin": "^7.9.0",
-    "@typescript-eslint/parser": "^7.9.0",
-    "@vitest/coverage-v8": "~1.6.0",
-    "@vitest/ui": "~1.6.0",
-    "eslint": "~8.57.0",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^9.0.11",
-    "is-ci": "^3.0.0",
-    "nx": "18.3.5",
-    "prettier": "^3.2.5",
-    "rollup-plugin-preserve-shebang": "1.0.1",
-    "tmp": "^0.2.1",
-    "tslib": "^2.3.0",
-    "typescript": "~5.4.5",
-    "verdaccio": "^5.0.4",
-    "vite": "~5.2.11",
-    "vitest": "~1.6.0"
+    "bumpp": "^10.2.0",
+    "changelogithub": "^13.16.0",
+    "oxlint": "^1.8.0",
+    "pkg-pr-new": "^0.0.54",
+    "prettier": "^3.6.2",
+    "tmp": "^0.2.3",
+    "tsdown": "^0.13.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "packageManager": "pnpm@10.13.1"
 }

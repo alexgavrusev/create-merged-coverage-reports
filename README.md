@@ -35,7 +35,7 @@ Options:
 ### API
 
 ```ts
-import { createMergedCoverageReports } from 'create-merged-coverage-reports';
+import { createMergedCoverageReports } from "create-merged-coverage-reports";
 
 async function main() {
   await createMergedCoverageReports();
@@ -46,11 +46,11 @@ main();
 
 ## Building
 
-Run `nx build create-merged-coverage-reports` to build the library.
+Run `pnpm run build` to build the library.
 
 ## Running unit tests
 
-Run `nx test create-merged-coverage-reports` to execute the unit tests.
+Run `pnpm run test` to execute the unit tests.
 
 ## License
 
