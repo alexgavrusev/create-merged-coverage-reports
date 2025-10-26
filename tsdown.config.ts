@@ -4,8 +4,6 @@ export default defineConfig({
   entry: ["./src/index.ts", "./src/bin.ts"],
   platform: "node",
   exports: true,
-  dts: {
-    isolatedDeclarations: true,
-  },
+  dts: true,
   sourcemap: true,
 });
