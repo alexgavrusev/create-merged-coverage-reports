@@ -41,7 +41,7 @@
     "istanbul-lib-coverage": "^3.2.2",
     "istanbul-lib-report": "^3.0.1",
     "istanbul-reports": "^3.1.6",
-    "read-package-up": "^11.0.0",
+    "read-package-up": "^12.0.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
