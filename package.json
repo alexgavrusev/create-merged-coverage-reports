@@ -1,6 +1,6 @@
 {
   "name": "create-merged-coverage-reports",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Create merged coverage reports",
   "license": "MIT",
   "private": false,
@@ -15,12 +15,10 @@
   },
   "type": "module",
   "bin": "./dist/bin.js",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
-    "./bin": "./dist/bin.js",
+    ".": "./dist/index.mjs",
+    "./bin": "./dist/bin.mjs",
     "./package.json": "./package.json"
   },
   "files": [
