@@ -54,10 +54,10 @@ export const createMergedCoverageReports = async (
   const { coverageFileGlob, outputDirectory, reporters } =
     normalizeOptions(options);
 
-  const jsonFilePaths = await glob([
-    coverageFileGlob,
-    `!${outputDirectory}/**/*`,
-  ]);
+  const jsonFilePaths = await glob(coverageFileGlob, {
+    ignore: `${outputDirectory}/**/*`,
+    cwd: process.cwd(),
+  });
 
   if (jsonFilePaths.length === 0) {
     throw new Error(
