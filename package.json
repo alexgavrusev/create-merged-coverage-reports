@@ -51,10 +51,10 @@
     "bumpp": "^11.0.1",
     "changelogithub": "^14.0.0",
     "oxlint": "^1.8.0",
-    "pkg-pr-new": "^0.0.70",
+    "pkg-pr-new": "^0.0.75",
     "prettier": "^3.6.2",
     "tmp": "^0.2.3",
-    "tsdown": "^0.21.7",
+    "tsdown": "^0.22.1",
     "typescript": "^6.0.2",
     "vitest": "^4.0.6"
   },
