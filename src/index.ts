@@ -1,1 +1,1 @@
-export * from './lib/create-merged-coverage-reports';
+export * from "./lib/create-merged-coverage-reports";

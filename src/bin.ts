@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { createProgram } from './lib/cli-program';
+import { createProgram } from "./lib/cli-program";
 
 const main = async () => {
   const program = await createProgram();
