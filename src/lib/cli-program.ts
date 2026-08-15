@@ -3,7 +3,11 @@ import { readPackageUp } from "read-package-up";
 
 import { createMergedCoverageReports } from "./create-merged-coverage-reports";
 
-export const createProgram = async ({ exitOverride = false } = {}) => {
+export const createProgram = async ({
+  exitOverride = false,
+}: {
+  exitOverride?: boolean;
+} = {}): Promise<Command> => {
   const program = new Command();
 
   if (exitOverride) {

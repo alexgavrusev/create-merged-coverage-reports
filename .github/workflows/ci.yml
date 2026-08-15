@@ -10,7 +10,7 @@ permissions: {}
 
 jobs:
   lint:
-    name: Lint
+    name: Lint and Unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -34,30 +34,11 @@ jobs:
       - name: Lint
         run: pnpm run lint
 
-  test:
-    name: Unit Tests
-    runs-on: ubuntu-latest
+      - name: Format check
+        run: pnpm run format:check
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          persist-credentials: false
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6.0.4
-
-      - name: Setup node
-        uses: actions/setup-node@v6
-        with:
-          node-version: lts/*
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm run build
+      - name: Typecheck
+        run: pnpm run typecheck
 
       - name: Test
         run: pnpm run test
