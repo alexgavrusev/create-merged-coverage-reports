@@ -33,7 +33,7 @@
     "lint:fix": "pnpm run lint --fix",
     "format:write": "prettier --cache --write .",
     "format:check": "prettier --cache --check .",
-    "release": "bumpp && pnpm publish",
+    "release": "bumpp",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
@@ -61,5 +61,5 @@
     "vitest": "^4.0.6"
   },
   "sideEffects": false,
-  "packageManager": "pnpm@10.13.1"
+  "packageManager": "pnpm@10.34.5"
 }
