@@ -29,14 +29,8 @@ export const createProgram = async ({
     .name(name)
     .description(description ?? "")
     .version(version, "-v, --version")
-    .option(
-      "-c, --coverageFileGlob <glob>",
-      "Glob to get all json coverage files",
-    )
-    .option(
-      "-o, --outputDirectory <dir>",
-      "Directory where all merged coverage reports",
-    )
+    .option("-c, --coverageFileGlob <glob>", "Glob to get all json coverage files")
+    .option("-o, --outputDirectory <dir>", "Directory where all merged coverage reports")
     .option(
       "-r, --reporters <reporters...>",
       "Which reporters (either built-in, or custom) to use to generate the merged coverage reports",

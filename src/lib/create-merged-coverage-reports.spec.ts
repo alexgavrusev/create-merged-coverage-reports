@@ -19,9 +19,9 @@ describe("createMergedCoverageReports", () => {
     dir = path.join("coverage", "merged"),
     file = "coverage-final.json",
   } = {}) => {
-    await expect(
-      await readFile(path.resolve(tmpDir.name, dir, file), "utf-8"),
-    ).toMatchFileSnapshot(path.resolve(expectedMergedReportsDir, file));
+    await expect(await readFile(path.resolve(tmpDir.name, dir, file), "utf-8")).toMatchFileSnapshot(
+      path.resolve(expectedMergedReportsDir, file),
+    );
   };
 
   beforeEach(async () => {

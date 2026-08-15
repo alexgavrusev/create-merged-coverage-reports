@@ -22,10 +22,9 @@ describe("CLI program", () => {
     const outputDirectory = "out";
     const reporters = ["lcovonly"];
 
-    program.parse(
-      ["-c", coverageFileGlob, "-o", outputDirectory, "-r", ...reporters],
-      { from: "user" },
-    );
+    program.parse(["-c", coverageFileGlob, "-o", outputDirectory, "-r", ...reporters], {
+      from: "user",
+    });
 
     expect(createMergedCoverageReports).toHaveBeenCalledOnce();
     expect(createMergedCoverageReports).toHaveBeenCalledWith({
