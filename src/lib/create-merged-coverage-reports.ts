@@ -51,8 +51,7 @@ const normalizeOptions = (options: CreateMergedCoverageReportsOptions) => {
 export const createMergedCoverageReports = async (
   options: CreateMergedCoverageReportsOptions = {},
 ): Promise<void> => {
-  const { coverageFileGlob, outputDirectory, reporters } =
-    normalizeOptions(options);
+  const { coverageFileGlob, outputDirectory, reporters } = normalizeOptions(options);
 
   const jsonFilePaths = await glob(coverageFileGlob, {
     ignore: `${outputDirectory}/**/*`,
@@ -60,9 +59,7 @@ export const createMergedCoverageReports = async (
   });
 
   if (jsonFilePaths.length === 0) {
-    throw new Error(
-      `No coverage reports found with the ${coverageFileGlob} glob`,
-    );
+    throw new Error(`No coverage reports found with the ${coverageFileGlob} glob`);
   }
 
   const mergedMap = libCoverage.createCoverageMap();
@@ -91,7 +88,5 @@ export const createMergedCoverageReports = async (
     report.execute(reportGenerationContext);
   });
 
-  console.log(
-    `Generated ${reporters.join(", ")} reports to ${outputDirectory}`,
-  );
+  console.log(`Generated ${reporters.join(", ")} reports to ${outputDirectory}`);
 };

@@ -1,29 +1,30 @@
 {
   "name": "create-merged-coverage-reports",
   "version": "0.11.1",
-  "description": "Create merged coverage reports",
-  "license": "MIT",
   "private": false,
+  "description": "Create merged coverage reports",
+  "homepage": "https://github.com/alexgavrusev/create-merged-coverage-reports#readme",
+  "bugs": {
+    "url": "https://github.com/alexgavrusev/create-merged-coverage-reports/issues"
+  },
+  "license": "MIT",
   "author": "Alex Gavrusev <alex@gavrusev.dev>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexgavrusev/create-merged-coverage-reports.git"
   },
-  "homepage": "https://github.com/alexgavrusev/create-merged-coverage-reports#readme",
-  "bugs": {
-    "url": "https://github.com/alexgavrusev/create-merged-coverage-reports/issues"
-  },
-  "type": "module",
   "bin": "./dist/bin.js",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.mjs",
     "./bin": "./dist/bin.mjs",
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
@@ -31,8 +32,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --deny-warnings",
     "lint:fix": "pnpm run lint --fix",
-    "format:write": "prettier --cache --write .",
-    "format:check": "prettier --cache --check .",
+    "format:write": "oxfmt .",
+    "format:check": "oxfmt --check .",
     "release": "bumpp",
     "prepublishOnly": "pnpm run build"
   },
@@ -52,14 +53,13 @@
     "@types/tmp": "^0.2.6",
     "bumpp": "^12.2.0",
     "changelogithub": "^15.0.4",
+    "oxfmt": "^0.63.0",
     "oxlint": "^1.8.0",
     "pkg-pr-new": "^0.0.87",
-    "prettier": "^3.6.2",
     "tmp": "^0.2.3",
     "tsdown": "^0.22.14",
     "typescript": "^7.0.2",
     "vitest": "^4.0.6"
   },
-  "sideEffects": false,
   "packageManager": "pnpm@10.34.5"
 }
